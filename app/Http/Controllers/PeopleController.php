@@ -14,6 +14,16 @@ class PeopleController extends Controller
     }
 
     public function store(StorePeopleRequest $people) {
-        return true;
+        $newPeople = People::create($people->all());
+        if ($newPeople) {
+            return response()->json([
+                'message' => 'Nova pessoa criada com sucesso'
+            ]);
+        }
+        else {
+            return response()->json([
+                'message' => 'Deu ruim manin.'
+            ], 422);
+        }
     }
 }
