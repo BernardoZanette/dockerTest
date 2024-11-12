@@ -50,4 +50,9 @@ class JWTAuthController extends Controller
             return response()->json(['error', 'Could not create token'], 500);
         } 
     }
+
+    public function logout() {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return response()->json(['message' => 'Logout successfully'], 200);
+    }
 }
